@@ -1,5 +1,5 @@
 <header>
-  <h1>
+  <h1 class="page-header">
     Welcome to BeerPitch
   </h1>
   <h2>
@@ -7,5 +7,31 @@
   </h2>
 </header>
 <section>
-  This is where the facebook login button will base
+  <h4>Facebook Events for USERNAME</h4>
+  <form>
+    <input type="text" placeholder="search bar for events">
+  </form>
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Length</th>
+        <th>Name</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="date">{{events.data[0].name}}</td>
+        <td class="time">time</td>
+        <td class="name">name</td>
+        <td class="info">
+          <a href="http://facebook.com/events{{events.data[0].id}}">More Info</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
 </section>
+
+
