@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth"}
   namespace :api, defaults: {format: :json} do
-    resources :users, only: [:show]
+    resources :user, only: [:show]
   end
   root 'dashboard#index'
   # The priority is based upon order of creation: first created -> highest priority.

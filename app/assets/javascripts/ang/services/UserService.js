@@ -1,10 +1,10 @@
 app.factory('User', User);
 
 function User($resource){
-  
-  var User = $resource('/api/users/:id/', {id: '@id'}, {
-    update: {method: 'PUT'}, 
-    query: {method: 'GET'}, 
+
+  var User = $resource('/api/user/:id', {id: 'id'}, {
+    get: {method: 'GET'},
+    update: {method: 'PUT'},
     delete: {method: 'DELETE'}
   });
   return User;
