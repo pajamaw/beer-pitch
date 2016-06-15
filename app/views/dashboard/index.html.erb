@@ -7,7 +7,7 @@
   </h2>
 </header>
 <section>
-  <h4>Facebook Events for USERNAME</h4>
+  <h4>Facebook Events for USERNAME HERE</h4>
   <form>
     <input type="text" placeholder="search bar for events">
   </form>
@@ -22,12 +22,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="event in events">
+      <tr ng-repeat="event in $scope.events.events">
         <td class="date">{{event.date}}</td>
         <td class="time">{{event.start_time}}</td>
         <td class="name">{{event.name}}</td>
         <td class="info">
-          <a href="http://facebook.com/events/{{event.id}}">More Info</a>
+          <a href="http://facebook.com/events/{{events.data[0].id}}">More Info</a>
         </td>
       </tr>
     </tbody>
