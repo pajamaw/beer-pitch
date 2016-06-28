@@ -8,26 +8,31 @@
 </header>
 <section>
   <h4>Facebook Events for USERNAME HERE</h4>
+  <h5>{{current_user.user.name}}</h5>
   <form>
     <input type="text" placeholder="search bar for events">
   </form>
   <table>
-    <h4><%=current_user.oauth_token%>
+    <h4>
     <thead>
       <tr>
-        <th>Date</th>
+        <th>Name</th>
         <th>Length</th>
-        <th>Name{{}}</th>
+        <th>Date</th>
         <th>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="event in $scope.events.events">
-        <td class="date">{{event.date}}</td>
-        <td class="time">{{event.start_time}}</td>
+
+      <tr ng-repeat="event in events">
         <td class="name">{{event.name}}</td>
+        <td class="time">{{event.start_time}}</td>
+        <td class="date">{{event.date}} </td>
         <td class="info">
-          <a href="http://facebook.com/events/{{events.data[0].id}}">More Info</a>
+          <a href="http://facebook.com/events/{{event.data[0].id}}">More Info</a>
+        </td>
+      </tr>
+        <td class="name">{{euser.name}}</td>
         </td>
       </tr>
     </tbody>
