@@ -1,11 +1,15 @@
 app.controller('MainController', MainController)
-function MainController($scope, $timeout, Facebook, User){
+function MainController($scope, $timeout, Facebook, User, Auth){
   $scope.events = {};
   $scope.euser = {};
   const preUrl = '/me/events?access_token=';
+
+  Auth.currentUser().then(function(user){
+    const id = user.id;
+  })
   User.get('1').then(function(resp){
     $scope.current_user = resp.data;
-    let oauth = resp.data.user.oauth_token
+    let oauth = resp.data.oauth_token
     let userUrl = '/me/events?access_token='+ oauth + '&since=today&limit=200';
     getEvents(userUrl, oauth);
     //debugger;
@@ -37,9 +41,9 @@ function MainController($scope, $timeout, Facebook, User){
             $scope.euser = response;
           }
           //console.log(response.error)
-      //    debugger;
+        debugger;
 
         })
     }
-  //  debugger;
+  debugger;
   }

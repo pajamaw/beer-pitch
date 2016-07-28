@@ -7,8 +7,10 @@
   </h2>
 </header>
 <section>
+  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+
   <h4>Facebook Events for USERNAME HERE</h4>
-  <h5>{{current_user.user.name}}</h5>
+  <h5>{{current_user.name}}</h5>
   <form>
     <input type="text" placeholder="search bar for events">
   </form>

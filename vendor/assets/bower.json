@@ -4,6 +4,8 @@
     "bootstrap": "latest",
     "angular": "latest",
     "angular-facebook": "latest",
-    "angular-resource": "latest"
+    "angular-resource": "latest",
+    "angular-devise": "latest",
+    "ng-token-auth": "latest"
   }
 }
