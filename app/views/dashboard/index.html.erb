@@ -32,7 +32,11 @@
           <a href="http://facebook.com/events/{{event.data[0].id}}">More Info</a>
         </td>
       </tr>
-        <td class="name">{{euser.name}}</td>
+        <td class="name">{{$scope.euser.name}}</td>
+        <td class="time">{{$scope.euser.start_time}}</td>
+        <td class="date">{{$scope.date}} </td>
+        <td class="info">
+          <a href="http://facebook.com/events/{{event.data[0].id}}">More Info</a>
         </td>
       </tr>
     </tbody>

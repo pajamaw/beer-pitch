@@ -2,38 +2,44 @@ app.controller('MainController', MainController)
 function MainController($scope, $timeout, Facebook, User){
   $scope.events = {};
   $scope.euser = {};
-  var current_user;
-  var url;
-  var oauth;
-  User.get({id: '1'}), function(data){
-    $scope.current_user = data;
-  };
+  const preUrl = '/me/events?access_token=';
+  User.get('1').then(function(resp){
+    $scope.current_user = resp.data;
+    let oauth = resp.data.user.oauth_token
+    let userUrl = '/me/events?access_token='+ oauth + '&since=today&limit=200';
+    getEvents(userUrl, oauth);
+    //debugger;
+  });
+
+
+  //debugger;
   //oauth = current_user.user.oauth_token;
-  url = '/me/events?access_token='+ oauth+ '&since=today&limit=200';
-  $scope.events = function() {
-    debugger;
-    //EAAPdcktnZCWsBAJQzp2PorKBZA7x1LqszbbmUcHpZBoEs9XI1w1ZCZCRu0dMpjJUu9VLQvizmZBFOQ7mZCbAPVPqQMt2njX2Or0vA6nZBDwNgm1IgUlzB8OLX9Cpd1NfNsdZCPsgkFYKgaW7u0oLdDHkqySbKKfDlifoZD
-    //$scope.current_user = User.get({id: 1});
-    //change to url once i get it to set
-    Facebook.api('/me/events?access_token=EAAPdcktnZCWsBAJQzp2PorKBZA7x1LqszbbmUcHpZBoEs9XI1w1ZCZCRu0dMpjJUu9VLQvizmZBFOQ7mZCbAPVPqQMt2njX2Or0vA6nZBDwNgm1IgUlzB8OLX9Cpd1NfNsdZCPsgkFYKgaW7u0oLdDHkqySbKKfDlifoZD&since=today&limit=200',//url,
-      function(response){
-        $scope.$apply(function(){
-          $scope.events = response.data;
-          debugger;
-        });
-      })
-    //  var event_id = $scope.events.
-};
-$scope.euser = function(){
-  Facebook.api('/468029196741743',
-    function(response){
-      $scope.$apply(function(){
-        $scope.euser = response.data;
-        debugger;
-    });
-  })
-};
-$scope.euser();
-  $scope.events();
-  debugger;
-}
+  function getEvents(url, auth){
+    $scope.events = function() {
+      Facebook.api(url,
+        function(response){
+          $scope.$apply(function(){
+            $scope.events = response.data;
+          //  debugger;
+          });
+        })
+      //  var event_id = $scope.events.
+    };
+      $scope.events();
+      hostInfo(auth);
+    //  debugger;
+    }
+
+    var hostInfo = function(auth){
+      return Facebook.api(`/1701993896731313?access_token=${auth}?fields=owner`,
+        function(response){
+          if (response && !response.error){
+            $scope.euser = response;
+          }
+          //console.log(response.error)
+      //    debugger;
+
+        })
+    }
+  //  debugger;
+  }
